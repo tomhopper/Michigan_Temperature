@@ -8,6 +8,9 @@ library(scales)
 # Do we want to save plots to disk? (alternative: display in R)
 save_plots <- TRUE
 
+# setup
+today_year <- year(Sys.Date())
+
 if(file.exists("data/temp_all.rds")) {
   temp_all_df <- readRDS("data/temp_all.rds")
 } else {
@@ -54,7 +57,7 @@ all_plot <- temp_all_df %>%
   labs(title = "Trend in Daily High and Low Temperatures",
        x = "Year",
        y = expression(list(Temperature, degree~C)),
-       caption = "2017 Thomas Hopper") +
+       caption = paste(today_year, "Thomas Hopper")) +
   theme_bw() +
   theme(legend.position = "bottom",
         legend.title = element_blank())
@@ -105,7 +108,7 @@ anomaly_plot <- temp_anomaly_df %>%
   labs(title = "Annual Temperature Anomaly",
        x = "Year",
        y = expression(list(Temperature~Anomaly, degree~C)),
-       caption = "2017 Thomas Hopper") +
+       caption = paste(today_year, "Thomas Hopper")) +
   theme_bw() +
   theme(legend.position = "bottom",
         legend.title = element_blank())
